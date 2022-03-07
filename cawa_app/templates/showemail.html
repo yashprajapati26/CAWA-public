@@ -1,0 +1,94 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+	<div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">Forget Password</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                   Forget Password
+                </h1>
+            </div>
+        </div>
+    </div>
+    
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+				<form class="login100-form validate-form" method="POST" action="{% url 'sendotp' %}">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-70">
+						Enter Your Email 
+					</span>
+					
+					<!-- <span class="login100-form-avatar">
+						<img src="{% static 'img/KS-logo.png' %}" alt="AVATAR">
+					</span>
+                    <div class="mx-auto" style="width: 200px;height: 30px;"> -->
+                        
+					<img style="width: 390px;height: 200px;" src="{% static 'img/KS-logo.png' %}" alt="AVATAR">
+
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+
+					
+
+					<div class="form-group">
+						<label for="sel1">Select Role </label>
+						<select class="form-control" name="srole" required>
+							<option disabled selected value>--Select Role--</option>
+							<option value="participant">Participant</option>
+							<option value="researcher">Researcher</option>
+							<option value="reviewer">Reviewer</option>
+						</select>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter valid Email">
+						<input class="input100" type="email" name="email">
+						<span class="focus-input100" data-placeholder="Enter Email"></span>
+					</div>
+					
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Send OTP
+						</button>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+                    
+                </form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+{% if msg %}
+	{% ifequal msg 'Enter valid Email And Role' %}
+	<script>
+		Swal.fire(
+			'',
+			'{{msg}}',
+			'error'
+		)
+	</script>
+	{% endifequal %}
+{% endif %}
+
+</body>
+
+</html>
+{% endblock %}

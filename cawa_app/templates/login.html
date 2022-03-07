@@ -1,0 +1,145 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+	<div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">Login</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Login
+                </h1>
+            </div>
+        </div>
+    </div>
+    
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+				<form class="login100-form validate-form" method="POST" action="{% url 'showlogin' %}">
+					{% csrf_token %}
+					
+					<img style="width: 390px;height: 200px;" src="{% static 'img/KS-logo.png' %}" alt="AVATAR">
+
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+					
+					<div class="form-group">
+						<label for="sel1">Select Role </label>
+						<select class="form-control" name="lrole">
+						  <option value="participant">Participant</option>
+						  <option value="researcher">Researcher</option>
+						  <option value="reviewer">Reviewer</option>
+						
+						</select>
+					</div>
+
+					<div class="mx-auto" style="width: 200px;height: 15px;">
+
+                    </div>
+
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter Email">
+						<input class="input100" type="email" name="lemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"required>
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 25px;">
+
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+						<input class="input100" type="password" name="lpass" required>
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+					<ul class="login-more p-t-190">
+						<li class="m-b-8">
+							<span class="txt1">
+								Forgot
+							</span>
+
+							<a href="{% url 'showemail' %}" class="txt2">
+								Username / Password?
+							</a>
+						</li>
+						<div class="mx-auto" style="width: 200px;height: 10px;">
+
+						</div>
+						<li>
+							<span class="txt1">
+								Don’t have an account?
+							</span>
+
+							<a href="{% url 'signup' %}" class="txt2">
+								Sign up
+							</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+						{% if msg %}
+							{% ifequal msg 'OTP verified successfully.' %}
+							<script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'success'
+								)
+							  </script>
+							{% endifequal %}
+							{% ifequal msg 'Password is incorrect !' %}
+							  <script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'error'
+								)
+							  </script>
+							{% endifequal %}
+							{% ifequal msg 'Email is not registered !' %}
+							  <script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'error'
+								)
+							  </script>
+							{% endifequal %}
+							{% ifequal msg 'Password changed successfully.' %}
+							<script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'success'
+								)
+							  </script>
+							{% endifequal %}
+							
+                    	{% endif %}
+</body>
+
+</html>
+{% endblock content %}

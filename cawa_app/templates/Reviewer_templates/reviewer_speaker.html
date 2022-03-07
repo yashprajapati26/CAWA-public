@@ -1,0 +1,144 @@
+{% extends 'Reviewer_templates/reviewer_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'reviewer_home' %}">Home</a></li>
+                    <li class="page">Speakers</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Speakers
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="team" class="section gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Our Speakers</h2>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="team-desc">
+                            <h3>Jon Doe</h3>
+                            <h5>CEO, Peloton Cycle</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. A enean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                        </div>
+                        <div class="team-img">
+                            <img src="{% static 'img/teacher/team-1.png' %}" alt="">
+                            <!-- <div class="social-icon">
+                                <a class="social" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="team-desc">
+                            <h3>Sophia Tailor</h3>
+                            <h5>Designer at Google</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. A enean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                        </div>
+                        <div class="team-img">
+                            <img src="{% static 'img/teacher/team-2.png' %}" alt="">
+                            <!-- <div class="social-icon">
+                                <a class="social" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="team-img">
+                            <img src="{% static 'img/teacher/team-3.png' %}" alt="">
+                            <!-- <div class="social-icon">
+                                <a class="social" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                            </div> -->
+                        </div>
+                        <div class="team-desc">
+                            <h3>LEO AMBERe</h3>
+                            <h5>Director, Via</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. A enean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="team-img">
+                            <img src="{% static 'img/teacher/team-4.png' %}" alt="">
+                            <!-- <div class="social-icon">
+                                <a class="social" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                            </div> -->
+                        </div>
+                        <div class="team-desc">
+                            <h3>Thomas Kelly</h3>
+                            <h5>Co-founder,theSkimm</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. A enean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Best Researcher</h2>
+                </div>
+                {% for i in winners %}
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="team-desc">
+                            <h3>{{i.Full_Paper.Researcher_FK.Res_user.Title}} {{i.Full_Paper.Researcher_FK.Res_user.Firstname}} {{i.Full_Paper.Researcher_FK.Res_user.Lastname}}</h3>
+                            <h4>{{i.Date}}</h4>
+                            <p>{{i.Full_Paper.Researcher_FK.About}}</p>
+                        </div>
+                        <div class="team-img">
+                            <img src="{{i.Full_Paper.Researcher_FK.Image.url}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+
+    
+</body>
+
+</html>
+{% endblock content %}

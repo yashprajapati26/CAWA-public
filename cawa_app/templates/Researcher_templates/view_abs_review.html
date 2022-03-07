@@ -1,0 +1,153 @@
+{% extends 'Researcher_templates/researcher_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <style type="stylesheet">
+        /*------------Update Profile--------------------------------**/
+
+        body {
+            background: #fff;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #035DFF;
+        }
+
+        .profile-button {
+            background: #035DFF;
+            box-shadow: none;
+            border: none;
+        }
+
+        .profile-button:hover {
+            background: #035DFF;
+        }
+
+        .profile-button:focus {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .profile-button:active {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .back:hover {
+            color: #035DFF;
+            cursor: pointer;
+        }
+
+        .labels {
+            font-size: 11px;
+        }
+
+        .add-experience:hover {
+            background: #035DFF;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #035DFF;
+        }
+    </style>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #035DFF;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">Abstract Review</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Abstract Review
+                </h1>
+            </div>
+        </div>
+    </div>
+    
+    <section id="content" class="section"> 
+
+        <div class="container">
+            <center>
+                <div style="height: 50px;">
+                <label class="labels" style="width: 200px;border: 1px solid black;"><b>Status:  {{abstract.Status}}</b></label>
+                <a href="{% url 'res_abstract_list' %}" class="btn btn-common btn-small"> Back </a>
+                {% if abstract.Status == 'accepted' %}
+                
+                    {% if abstract.Registration_FK.Conference_Theme.FullPaper_Submission_Date < today %}
+                        <a href="#" class="btn btn-common btn-small" disabled>Submit Fullpapaer</a></button>
+                        <p style="color: red;">*Fullpapaer submission date has ended.</p>
+                    {% else %}
+                        <a href="{% url 'fullpaper_submit' pk=abstract.id %}" class="btn btn-common btn-small">Submit Fullpapaer</a>
+                        <p style="color: red;">*Submit Your Fullpapaer before the last date.</p>
+                    {% endif %}
+
+                {% endif %}
+                </div>
+                <br><br><br>
+            </center>
+               
+
+            <table id="customers">
+                <tr>
+                    <th>No.</th>
+                    <th>OverAll Review</th>
+                    <th>Review In Description</th>
+                </tr>
+                {% for i in review %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.Evaluation}}</td>
+                    <td>{{i.Reviews}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
+{% endblock content %}

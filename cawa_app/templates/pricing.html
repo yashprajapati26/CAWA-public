@@ -1,0 +1,115 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">Guidlines</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Guidlines
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Submission Guidlines</h2>
+                    <h4 class="section-title wow fadeInUp" data-wow-delay="0s">For Abstract</h4>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i>  Word limit for abstract is approx. 300 words, including all the
+                        important key words, font size 12 , Times New Roman.<br>
+                        <i class='fa fa-caret-right'></i>  Sub theme should be mentioned along with the abstract.<br>
+                        <i class='fa fa-caret-right'></i>  Title of the paper, Author Name & Designation, Institutional affiliation,
+                        E-mail ID & contact number.
+                    </p>
+                    <h4 class="section-title wow fadeInUp" data-wow-delay="0s">For Fullpapaer</h4>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i>  Title of the paper, Author Name & Designation, Institutional affiliation,
+                        E-mail ID & contact number.<br>
+                        <i class='fa fa-caret-right'></i>  All manuscripts should be of approx. 3000 words.<br>
+                        <i class='fa fa-caret-right'></i>  References should be cited in APA style.<br>
+                        <i class='fa fa-caret-right'></i>  Title in Bold letters (Font size 14).<br>
+                        <i class='fa fa-caret-right'></i>  Font in Times New Roman (Font size 12).<br>
+                        <i class='fa fa-caret-right'></i>  Line spacing should be 1.5 .<br>
+                        <i class='fa fa-caret-right'></i>  Paper should be submitted in MS-Word format.<br>
+                        <i class='fa fa-caret-right'></i>  The full paper received will be checked for plagiarism using software.<br>
+                        <i class='fa fa-caret-right'></i>  If plagiarism exceeds 15%, the paper will be sent back to the authors for modification.<br>
+                    </p>
+                    <h4 class="section-title wow fadeInUp" data-wow-delay="0s">Publication</h4>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i>  Paper selected by the review committee will be published in
+                        conference proceeding book with ISBN No.<br>
+                        <i class='fa fa-caret-right'></i> Best research paper will be awarded in each category.<br>
+                    </p>
+                    <h4 class="section-title wow fadeInUp" data-wow-delay="0s">Conference Participation</h4>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i> Atleast one author needs to remain present during conference to get the
+                        certificate of paper presentation otherwise it will be treated as in absentia.
+                    </p>
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Call For Papers / Articles</h2>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i>  Theoretical, Conceptual, Empirical papers & Research Articles which are
+                        original, not published elsewhere are invited in accordance with the themes
+                        & sub-themes of the conference. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Take a look at Our Pricing</h2>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">Lorem ipsum dolor sit amet,
+                        consectetuer adipiscing elit. Aenean commodo ligula eget dolor. A <br> enean massa. Cum sociis
+                        natoque penatibus et magnis dis parturient montes.</p>
+                </div>
+                {% for i in RegCat %}
+                <div class="col-md-3">
+                    <div class="pricing-table wow fadeInLeft" data-wow-delay="0.3s">
+                        <div class="table-icon">
+                            <i class="icon-user"></i>
+                        </div>
+                        <h3>{{i.Category}}</h3>
+                        <ul class="plan-info">
+                            <li><i class="icon-check"></i> Access to Booth</li>
+                            <li><i class="icon-check"></i> Conference Tickets</li>
+                            <li><i class="icon-check"></i> Registation Kit</li>
+                        </ul>
+                        <div class="price">
+                            <h4>{{i.Amount}} INR</h4>
+                        </div>
+                        <div class="button-area">
+                            {% if request.session.email %}
+                                <a href="{% url 'participant_registraion' %}" class="btn btn-common">Register</a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-common">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+
+</body>
+
+</html>
+{% endblock content %}

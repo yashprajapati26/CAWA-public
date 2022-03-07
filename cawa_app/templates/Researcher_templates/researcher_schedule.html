@@ -1,0 +1,140 @@
+{% extends 'Researcher_templates/researcher_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'researcher_home' %}">Home</a></li>
+                    <li class="page">Themes</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Themes
+                </h1>
+            </div>
+        </div>
+    </div>
+    
+<section id="schedule" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+            
+                <div class="main-board wow fadeInDown" data-wow-delay="0.3s">
+
+                    <ul class="nav day" role="tablist">
+                        {% for i in theme %}
+                        <li role="presentation"><a href="{% url 'res_shedule_detail' pk=i.id %}">{{i.Theme_name}}<br><span> <br> </span></a></li>
+                        {% endfor %}
+                            <div class="col-md-12 board text-center">
+                                <div class="col-md-12  col-sm-6"> 
+                                    <div class="member stephen" style="text-align: left;">
+                                        <h4>Click Button For Registraton : </h4>
+                                        {% if request.session.email %}
+                                        <p class="button" style="float: right;">
+                                            <a href="{% url 'researcher_registration' %}" class="btn-large bg-2">Register</a>
+                                        </p>
+                                        {% else %}
+                                        <p class="button" style="float: right;">
+                                            <a href="{% url 'login' %}" class="btn-large bg-2">Login</a>
+                                        </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                    </ul>
+
+                    {% if sub %}
+                    <div class="tab-content">
+                    
+
+                        <div role="tabpanel" class="tab-pane active" id="day1">
+                            
+                            <div class="row">
+                                <div class="col-md-12 board text-center">
+
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="member stephen" style="text-align: left;">
+                                            <div class="button">
+                                                <a href="#" class="btn-large bg-2">Sub - Themes</a>
+                                            </div>
+                                            <div class="mx-auto" style="height: 30px;"></div>
+                                            {% for i in sub %}
+                                            <p><i class='fa fa-caret-right'></i> {{i}}</p>
+                                            {% endfor %}
+                                            
+                                        </div>    
+                                    </div>
+                                    {% if conf %}
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="member jon">
+                                            <div class="button">
+                                                <a href="#" class="btn-large bg-2"> {{conf.Conference_Theme.Theme_name}} </a>
+                                            </div>
+                                            <h4>About</h4>
+                                            <p>{{conf.Conference_Description}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="member stephen">
+                                            <div class="button">
+                                                <a href="#" class="btn-large bg-2">Date - Time</a>
+                                            </div>
+                                            <br>
+                                            <p>Date: {{conf.Date}}</p><br>
+                                            <p>Start Time: {{conf.Start_Time}}</p><br>
+                                            <p>End Time: {{conf.End_Time}}</p><br>
+                                            <p>Mode: {{conf.Conference_Mode}}</p><br>
+                                            {% if conf.Conference_Mode == "Offline" %}
+                                                <p>Address: {{conf.Place}}</p><br>
+                                            {% endif %}
+                                            <h4>Date For Researchers</h4>
+                                            <p>Abstract Submission Date: <br>{{conf.Abstract_Submission_Date}}</p>
+                                            <p>Abstract Acceptance Date: <br>{{conf.Abstract_Acceptance_Date}}</p>
+                                            <p>FullPaper Submission Date: <br>{{conf.FullPaper_Submission_Date}}</p>
+                                            <p>FullPaper Acceptance Date: <br>{{conf.FullPaper_Acceptance_Date}}</p>
+                                            <h4>Date For Participants</h4>
+                                            <p>Registration Starting Date: <br>{{conf.Participant_registration_start_Date}}</p>
+                                            <p>Registration Ending Date: <br>{{conf.Participant_registration_end_Date}}</p>
+                                             
+                                        </div>
+                                        
+                                    </div>
+                                    {% else %}
+
+                                            <div class="col-md-8 col-sm-12">
+                                                <div class="member jon">
+                                                    <div class="button">
+
+                                                        <a href="#" class="btn-large bg-2"> {{theme1}} </a>
+                                                    </div>
+                                                    <h4>There is no conference regaurding This Topic.</h4>
+                                                </div>
+                                            </div>
+                                    {% endif %}
+                                            
+                                </div>
+                            </div>
+                        </div>  
+                
+                    
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>
+{% endblock content %}

@@ -1,0 +1,126 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">Sponsore</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Sponsors
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="sponsors" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Our Sponsors</h2>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="spnsors-logo wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="#"><img src="{% static 'img/sponsors/logo-01.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="spnsors-logo wow fadeInUp" data-wow-delay="0.2s">
+                        <a href="#"><img src="{% static 'img/sponsors/logo-02.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="spnsors-logo wow fadeInUp" data-wow-delay="0.3s">
+                        <a href="#"><img src="{% static 'img/sponsors/logo-03.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="spnsors-logo wow fadeInUp" data-wow-delay="0.4s">
+                        <a href="#"><img src="{% static 'img/sponsors/logo-04.png' %}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="team" class="section gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Others Speakers</h2>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="team-desc">
+                            <h3>Jon Doe</h3>
+                            <h5>CEO, Peloton Cycle</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. A enean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                        </div>
+                        <div class="team-img">
+                            <img src="{% static 'img/teacher/team-1.png' %}" alt="">
+                            <div class="social-icon">
+                                <a class="social" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-member wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="team-desc">
+                            <h3>LEO AMBERe</h3>
+                            <h5>Director, Via</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. A enean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                        </div>
+                        <div class="team-img">
+                            <img src="{% static 'img/teacher/team-2.png' %}" alt="">
+                            <div class="social-icon">
+                                <a class="social" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
+                                <a class="social" href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="intro" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="content-text">
+                        <h2>ARE YOU READY TO MANAGE YOUR OWN EVENTS?</h2>
+                        <p class="text">All of our virtual professionals are highly experienced in the areas in which
+                            they work and have been through a thorough recruitment process.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 text-right">
+                    <a href="#" class="btn-cta btn btn-common"><i class="icon-control-play"></i> Sign Up Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
+{% endblock content %}

@@ -1,0 +1,249 @@
+{% extends 'Reviewer_templates/reviewer_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    
+    <style type="stylesheet">
+        /*------------Update Profile--------------------------------**/
+
+        body {
+            background: #fff;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #035DFF;
+        }
+
+        .profile-button {
+            background: #035DFF;
+            box-shadow: none;
+            border: none;
+        }
+
+        .profile-button:hover {
+            background: #035DFF;
+        }
+
+        .profile-button:focus {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .profile-button:active {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .back:hover {
+            color: #035DFF;
+            cursor: pointer;
+        }
+
+        .labels {
+            font-size: 11px;
+        }
+
+        .add-experience:hover {
+            background: #035DFF;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #035DFF;
+        }
+    </style>
+    <style>
+        .card-wrapper {
+        width: 230px;
+        height: 280px;
+        position: relative;
+        }
+
+        .card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 230px;
+        height: 280px;
+        transform: translate(-50%, -50%);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        transition: 0.5s;
+        }
+        .card .card-image {
+        position: absolute;
+        z-index: 2;
+        background-color: #000;
+        transition: 0.5s;
+        }
+        .card:hover img {
+        opacity: 0.4;
+        transition: 0.5s;
+        }
+
+        .card:hover .card-image {
+        transform: translateY(-100px);
+        transition: all 0.9s;
+        }
+
+        /**** Personal Details ****/
+        .details::-webkit-file-upload-button{
+        visibility :hidden;
+        }
+
+        .details::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        height: 90px;
+        z-index: 1;
+        padding :15px 90px;
+        content :'\f030';
+        font-family: fontAwesome;
+        font-size :50px;
+        color : black;
+        display :inline-block;
+        -webkit-user-select:none;
+        cursor :pointer;
+        }
+
+        
+        .details h2 {
+        margin: 30px 0;
+        padding: 0;
+        text-align: center;
+        }
+
+        .details h2 .job-title {
+        font-size: 1rem;
+        line-height: 2.5rem;
+        color: #333;
+        font-weight: 300;
+        }
+
+        .jane {
+        content:'\f030';
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        opacity: 0;
+        background: #fff;
+        width: 100%;
+        height: 100px;
+        z-index: 3;
+        padding: 10px;
+        transition: 0.4s;
+        }
+
+
+        .card:hover .jane {
+        bottom: 0;
+        left: 0;
+        transition-delay: 0.5s;
+        opacity: 1;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'reviewer_home' %}">Home</a></li>
+                    <li class="page">User Profile</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    User Profile
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+    <form method="POST" name='reviewer_profile' action="{% url 'reviewer_profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <div class="card-wrapper">
+                           <div class="card">
+                                <div class="card-image">
+                                    <a class="preview lightbox" href="{{reviewer_user.Image.url}}"><img src="{{reviewer_user.Image.url}}" style="height: 280px;width: 230px;"></a>  
+                                </div>
+                                <div class="details jane">
+                                    <input type="file" class="details" value="{{reviewer_user.Image}}" name="pimage">
+                        
+                                </div>
+                            </div>
+                        </div>  
+                        
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            
+
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First name" value="{{user.Firstname}}" name="fname"></div>
+                        <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" placeholder="Last name" value="{{user.Lastname}}" name="lname"></div>
+                        <div class="col-md-12"><label class="labels">Role</label><input type="text" class="form-control" placeholder="Role" value="{{user.Role}}" name="role" readonly></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="Email ID" value="{{user.Email}}" name="email" readonly></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="col-md-12"><label class="labels">Phone</label><input type="text" class="form-control" placeholder="Phone Number" value="{{reviewer_user.Phone}}" name="phone"></div>
+                    <div class="col-md-12"><label class="labels">About</label><input type="text" class="form-control" placeholder="About YourSelf" value="{{reviewer_user.About}}" name="about"></div> <br>
+                    <div class="col-md-12"><label class="labels">Address</label><input type="textarea" class="form-control" placeholder="Full Address" value="{{reviewer_user.Address}}" name="address"></div>
+                </div>
+            </div>
+            <center>
+            <div class="container-login100-form-btn" style="width: 200px;">
+                <div class="mx-auto" style="width: 200px;height: 30px;"></div>            
+                <button class="login100-form-btn">
+                    Save Profile
+                </button>
+            </div>
+            </center> 
+            </div>
+        </div>
+    </form>
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+                        {% if msg %}
+							{% ifequal msg 'Profile Updated Successfully.' %}
+							<script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'success'
+								)
+							  </script>
+							  {% endifequal %}
+                    	{% endif %}
+
+
+</body>
+
+</html>
+{% endblock content %}

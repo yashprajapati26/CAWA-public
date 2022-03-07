@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+				<form class="login100-form validate-form" method="POST" action="{% url 'otp_var' %}" enctype="multipart/form-data">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-70">
+						OTP Verification
+					</span>
+					
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+					<img style="width: 390px;height: 200px;" src="{% static 'img/KS-logo.png' %}" alt="AVATAR">
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+
+					<div class="mx-auto" style="width: 200px;height: 30px;">
+						<input type="hidden" name="gotp" value="{{gotp}}">
+						<input type="hidden" name="email" value="{{email}}">
+						<input type="hidden" name="title" value="{{title}}">
+						<input type="hidden" name="fname" value="{{fname}}">
+						<input type="hidden" name="lname" value="{{lname}}">
+						<input type="hidden" name="pass" value="{{pass}}">
+						<input type="hidden" name="role" value="{{role}}">
+					</div>
+
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter Valid OTP">
+						<input class="input100" type="text" name="otp" required>
+						<span class="focus-input100" data-placeholder="Enter OTP"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 25px;">
+						
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Verify OTP
+						</button>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+                    
+                </form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+						{% if msg %}
+							{% ifequal msg 'Please enter correct otp!' %}
+							<script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'error'
+								)
+							  </script>
+							{% endifequal %}
+                    	{% endif %}
+</body>
+
+</html>
+{% endblock %}

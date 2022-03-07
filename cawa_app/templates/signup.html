@@ -1,0 +1,157 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+	<div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">SignUp</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    SignUp
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+    
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+				<form class="login100-form validate-form" method="POST" action="{% url 'create_user' %}">
+					{% csrf_token %}
+					
+						
+					
+					<img style="width: 390px;height: 200px;" src="{% static 'img/KS-logo.png' %}" alt="AVATAR">
+					<div class="mx-auto" style="width: 200px;height: 20px;"></div>
+
+					<div class="form-group">
+						<label for="sel1">Select Role </label>
+						<select class="form-control" name="srole" required>
+							<option disabled selected value>--select option--</option>
+							<option value="participant">Participant</option>
+							<option value="researcher">Researcher</option>
+							<option value="reviewer">Reviewer</option>
+						</select>
+					</div>
+
+					
+					<div class="form-group">
+						<label for="sel2">Title </label>
+						<select class="form-control" name="stitle" required>
+							<option disabled selected value>--select option--</option>
+							<option value="Dr.">Dr.</option>
+							<option value="Prof.">Prof.</option>
+							<option value="Mr.">Mr.</option>
+							<option value="Ms.">Ms.</option>
+							<option value="Mrs.">Mrs.</option>
+						</select>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 15px;">
+
+                    </div>
+
+
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter First Name">
+						<input class="input100" type="text" name="sfname" pattern="^[a-zA-Z]+" title="First Name Should Contain Only Letters" required>
+						<span class="focus-input100" data-placeholder="First name"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 25px;">
+
+					</div>
+					
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter Last Name">
+						<input class="input100" type="text" name="slname" pattern="^[a-zA-Z]+" title="Last Name Should Contain Only Letters" required>
+						<span class="focus-input100" data-placeholder="Last name"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 25px;">
+
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter Email">
+						<input class="input100" type="email" name="semail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+
+                    
+                    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter Password">
+						<input class="input100" type="password" name="spass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Make sure it's at least 15 characters OR at least 8 characters including a number , uppercase and a lowercase letter."required>
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 25px;">
+
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter confirm password">
+						<input class="input100" type="password" name="scpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+						<span class="focus-input100" data-placeholder="Confirm Password"></span>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Sign Up
+						</button>
+					</div>
+					<div class="mx-auto" style="width: 200px;height: 40px;">
+
+					</div>
+					<ul class="login-more p-t-190">
+						
+						<li>
+							<span class="txt1">
+								Allready have an account?
+							</span>
+ 
+							<a href="{% url 'login' %}" class="txt2">
+								Log in
+							</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+	
+						{% if msg %}
+							{% ifequal msg 'This email is allready registered!' %}
+							<script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'info'
+								)
+							  </script>
+							{% endifequal %}
+							{% ifequal msg 'Password & Confirm password does not matched' %}
+							  <script>
+								Swal.fire(
+								  '',
+								  '{{msg}}',
+								  'error'
+								)
+							  </script>
+							{% endifequal %}
+                    	{% endif %}
+</body>
+
+</html>
+{% endblock content %}

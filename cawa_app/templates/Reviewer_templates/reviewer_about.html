@@ -1,0 +1,197 @@
+{% extends 'Reviewer_templates/reviewer_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<bod>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'reviewer_home' %}">Home</a></li>
+                    <li class="page">About Us</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    About Us
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <section id="about" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">About This Event</h2>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-block wow fadeInDown" data-wow-delay="0.1s">
+                            <div class="img-wrap">
+                                <img src="{% static 'img/feature/img-1.jpg' %}" alt="">
+                            </div>
+                            <div class="descr">
+                                <h4>Why we are doing this?</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque </p>
+                                <a href="#" class="btn btn-common btn-small">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-block wow fadeInDown" data-wow-delay="0.2s">
+                            <div class="img-wrap">
+                                <img src="{% static 'img/feature/img-2.jpg' %}" alt="">
+                            </div>
+                            <div class="descr">
+                                <h4>What you will learn?</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque </p>
+                                <a href="#" class="btn btn-common btn-small">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-block wow fadeInDown" data-wow-delay="0.3s">
+                            <div class="img-wrap">
+                                <img src="{% static 'img/feature/img-3.jpg' %}" alt="">
+                            </div>
+                            <div class="descr">
+                                <h4>What are the benifits?</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque </p>
+                                <a href="#" class="btn btn-common btn-small">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="featured" class="section gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">Our Feature</h2>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="featured-box wow fadeInLeft" data-wow-delay="0.1s">
+                            <div class="icon">
+                                <i class="icon-event"></i>
+                            </div>
+                            <div class="featured-content">
+                                <h4>Issues</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="featured-box wow fadeInLeft" data-wow-delay="0.2s">
+                            <div class="icon">
+                                <i class="icon-clock"></i>
+                            </div>
+                            <div class="featured-content">
+                                <h4>Maintenance</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="featured-box wow fadeInLeft" data-wow-delay="0.3s">
+                            <div class="icon">
+                                <i class="icon-compass"></i>
+                            </div>
+                            <div class="featured-content">
+                                <h4>Destination</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <div id="carousel-area">
+        <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="{% static 'img/slider/slider1.jpg' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'img/slider/slider2.jpg' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'img/slider/slider3.jpg' %}" alt="">
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#carousel-slider" role="button" data-slide="prev">
+                <span class="icon-arrow-left" aria-hidden="true"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-slider" role="button" data-slide="next">
+                <span class="icon-arrow-right" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">K.S.School of Business Management</h2>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i> K S School of Business Management is one of the first institutions in the country
+                        offering Five-year Integrated Management Programme under the aegis of
+                        Gujarat University since 1993. It rolled out its first Five-year Integrated MSc
+                        (Computer Applications and Information Technology) programme in 1998. The
+                        institute continues to attract the cream of students of Gujarat and other
+                        neighbouring states. Over these years it has nurtured budding talent and has
+                        contributed to the development of Management and IT professionals in the
+                        domestic and international platform.
+                    </p>
+                    <h4 class="section-title wow fadeInUp" data-wow-delay="0s">Gujarat University</h4>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i>  Gujarat University is the largest University in Gujarat since 1949 with a
+                        significant history of being remarkably instrumental in the dynamic progress
+                        of the State through its advanced Higher Education programmes. Gujarat
+                        University recently completed 70 years of glorious existence and over these
+                        years has to its credit one of the largest bases of alumni. Gujarat University
+                        has done various MOUs & associations with research organizations,
+                        government agencies, industrial bodies to support students and faculties in
+                        order to create useful research for the society. With a robust network of
+                        around 47 PG departments in the campus, the University has taken
+                        necessary measures and initiatives to contribute to the advancement of
+                        research, academics and innovation in the country while keeping itself
+                        abreast with the times by launching various innovative programmes in the
+                        contemporary areas like forensic science, forensic accounting, climate
+                        change, biodiversity management, SEZ management, port management.
+                    </p>
+                    <h2 class="section-title wow fadeInUp" data-wow-delay="0s">About Conference</h2>
+                    <p class="section-subcontent wow fadeInUp" data-wow-delay="0.2s">
+                        <i class='fa fa-caret-right'></i>  KSCON is initiated by K.S .School of Business Management to ignite
+                        intellectual minds of the academia, researchers & students to discuss the
+                        emerging trends in management & IT in the present era.<br>
+                        <i class='fa fa-caret-right'></i>  Business in modern times is characterized by uncertainty, complexity and agility which presents a
+                        plethora of opportunities in terms of developing innovative business
+                        practices in the field of Management and Information Technology.<br>
+                        <i class='fa fa-caret-right'></i>  In the present scenario, KS Conference aims at contemplating over these
+                        trending issues and invites paper presentations from academia, industry,
+                        research scholars and the student community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
+{% endblock content %}

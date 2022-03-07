@@ -1,0 +1,259 @@
+{% extends 'Researcher_templates/researcher_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <style type="stylesheet">
+        /*------------Update Profile--------------------------------**/
+
+        body {
+            background: #fff;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #035DFF;
+        }
+
+        .profile-button {
+            background: #035DFF;
+            box-shadow: none;
+            border: none;
+        }
+
+        .profile-button:hover {
+            background: #035DFF;
+        }
+
+        .profile-button:focus {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .profile-button:active {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .back:hover {
+            color: #035DFF;
+            cursor: pointer;
+        }
+
+        .labels {
+            font-size: 11px;
+        }
+
+        .add-experience:hover {
+            background: #035DFF;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #035DFF;
+        }
+    </style>
+    <style>
+        .card-wrapper {
+        width: 230px;
+        height: 300px;
+        position: relative;
+        }
+
+        .card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 230px;
+        height: 300px;
+        transform: translate(-50%, -50%);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        transition: 0.5s;
+        }
+        .card .card-image {
+        position: absolute;
+        z-index: 2;
+        background-color: #000;
+        transition: 0.5s;
+        }
+        .card:hover img {
+        opacity: 0.4;
+        transition: 0.5s;
+        }
+
+        .card:hover .card-image {
+        transform: translateY(-100px);
+        transition: all 0.9s;
+        }
+
+        /**** Personal Details ****/
+        .details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        height: 80px;
+        z-index: 1;
+        padding: 10px;
+        }
+        .details h2 {
+        margin: 30px 0;
+        padding: 0;
+        text-align: center;
+        }
+        .details h2 .job-title {
+        font-size: 1rem;
+        line-height: 2.5rem;
+        color: #333;
+        font-weight: 300;
+        }
+
+        .jane {
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        opacity: 0;
+        background: #fff;
+        width: 100%;
+        height: 100px;
+        z-index: 3;
+        padding: 10px;
+        transition: 0.4s;
+        }
+
+
+        .card:hover .jane {
+        bottom: 0;
+        left: 0;
+        transition-delay: 0.5s;
+        opacity: 1;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'researcher_home' %}">Home</a></li>
+                    <li class="page">Co Author</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Co Author
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+    <form method="POST" action="{% url 'co_author' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="row mt-2">
+                        
+                        <div class="form-group">
+                            <label for="sel2">Title </label>
+                            <select class="form-control" name="stitle" required>
+                                <option disabled selected value>--select option--</option>
+                                <option value="Dr.">Dr.</option>
+                                <option value="Prof.">Prof.</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Ms.">Ms.</option>
+                                <option value="Mrs.">Mrs.</option>
+                            </select>
+                        </div>
+                        <div class="mx-auto" style="width: 200px;height: 15px;">
+    
+                        </div>
+                        <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First name" 
+                            value="" name="sfname" pattern="^[a-zA-Z]+" title="Name Should Contain Only Letters" required ></div>
+                        <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control" placeholder="Last name" 
+                            value="" name="slname" pattern="^[a-zA-Z]+" title="Name Should Contain Only Letters" required ></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="Email ID" 
+                            value="" name="semail" required ></div>
+                        <div class="col-md-12"><label class="labels">Phone</label><input type="text" class="form-control" placeholder="Phone Number" 
+                            value="" name="sphone" pattern="^[0-9]+" title="First Name Should Contain Only Digit" required></div>
+                        <div class="col-md-12"><label class="labels">Designation(In Case of Students, kindly mention your highest degree i.e UG/PG/PhD)</label><input type="text" class="form-control" placeholder="Your answer" 
+                            value="" name="sdesg" required></div>
+                        <input type="hidden" value="{{reg.Registraion_number}}" name="regid">                   
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="col-md-12"><label class="labels">Name of the Institute/Organization</label><input type="text" class="form-control" placeholder="Your answer" 
+                        value="" name="sIn_name" required></div> <br>
+                    <div class="col-md-12"><label class="labels">Address of the Institute/Organization</label><input type="text" class="form-control" placeholder="Your answer" 
+                        value="" name="sIn_address" required></div>
+                    <div class="col-md-12">
+                        <label for="sel1">Select Your Category </label>
+                        <script>
+                                function getAmount(tag) {
+                                    var sel = $('.samount');
+                                    var amt = $(tag).find('option:selected').attr('amt');
+                                    sel.val(amt)
+                                }
+                        </script>
+                        <select class="form-control" name="srole" id="Category" onchange="getAmount(this)" required>
+                                <option disabled selected value>--select option--</option>
+                                {% for i in category %}
+                                <option value="{{i.Category}}" amt="{{i.Amount}}">{{i.Category}}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-12"><label class="labels" >Amount (INR)</label>
+                        <input type="text" class="samount form-control"
+                         name="samount" value="" id="demo" readonly>
+                    </div>
+                
+                    <div class="col-md-12">
+                        <label for="sel1">Wants to add Co-author?</label>
+                        <select class="form-control" name="sauthor" required>
+                                <option disabled selected value>--select option--</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                        </select>
+                    </div>
+                   
+                   
+                    <div class="container-login100-form-btn" style="width: 200px;margin:auto;">
+                        <div class="mx-auto" style="width: 200px;height: 30px;"></div>            
+                        <button type="submit" class="login100-form-btn">
+                            Next
+                        </button>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </div>  
+        </div>
+    </form>
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+                        
+</body>
+
+</html>
+{% endblock content %}

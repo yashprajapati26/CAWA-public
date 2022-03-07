@@ -1,0 +1,145 @@
+{% extends 'Researcher_templates/researcher_header.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <style type="stylesheet">
+        /*------------Update Profile--------------------------------**/
+
+        body {
+            background: #fff;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #035DFF;
+        }
+
+        .profile-button {
+            background: #035DFF;
+            box-shadow: none;
+            border: none;
+        }
+
+        .profile-button:hover {
+            background: #035DFF;
+        }
+
+        .profile-button:focus {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .profile-button:active {
+            background: #035DFF;
+            box-shadow: none;
+        }
+
+        .back:hover {
+            color: #035DFF;
+            cursor: pointer;
+        }
+
+        .labels {
+            font-size: 11px;
+        }
+
+        .add-experience:hover {
+            background: #035DFF;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #035DFF;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="page">Registration Details</li>
+                </ol>
+                <h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+                    Registration Details
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+    {% for i in abs %}
+
+    <form method="POST" action="{% url 'researcher_initiate_payment' pk=i.Registration_FK.Registraion_number %}">
+        {% csrf_token %}
+
+        <section id="content" class="section">
+            <div class="container">
+                <div class="row">
+                  
+                    <div class="col-md-8">
+                        <div class="blog-post">
+                            <div class="post-content">
+                                <h3 class="post-title">{{i.Registration_FK.Conference_Theme}}</h3>
+                                <span class="meta-part"><i class="icon-calendar"></i>Date of Registation:
+                                    {{i.Registration_FK.Date}}</span><br>
+                                {% if i.Registration_FK.Members != "" %}
+                                <span class="meta-part"><i class="icon-bubbles"></i>Members:
+                                    {{i.Registration_FK.Members}} Members Name: {{i.Registration_FK.co_authors}}</span>
+                                {% endif %}
+
+                                <p><b>Total Amount To Pay: <input name="amount"
+                                            value="{{i.Registration_FK.Total_amount}}" readonly></b></p>
+                                <p><b>Payment Status: {{i.Registration_FK.Payment_Status}}</b></p>
+                                <p><b>Paper ID: {{i.PaperID}}</b></p>
+                                <p><b>Publication Title: {{i.Title}}</b></p>
+                                <br>
+                                <h4>Conference Details:</h4>
+                                <p><b>Date: </b>{{i.Registration_FK.Conference_Theme.Date}} To {{i.Registration_FK.Conference_Theme.End_Date}}</p>
+                                <p><b>Time: </b>{{i.Registration_FK.Conference_Theme.Start_Time}} To {{i.Registration_FK.Conference_Theme.End_Time}}</p>
+                                <p><b>Conference Mode: </b>{{i.Registration_FK.Conference_Theme.Conference_Mode}}</p>
+                                {% if i.Registration_FK.Conference_Theme.Conference_Mode == 'Offline' %}
+                                <p><b>Place: </b>{{i.Registration_FK.Conference_Theme.Place}}</p>
+                                {% endif %}
+                                <br>
+                                {% if i.Registration_FK.Payment_Status == False %}
+                                <p>Note:Your registration detail has been saved.<br>Now You can Pay Anytime!</p>
+                                <br><button class="btn btn-common btn-small">Make Payment</button>
+                                {% else %}
+                                <h4>Payment : Done!</h4>
+                                <p><b>Check Your Mail for Confirmation.</b></p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+
+    </form>
+    {% empty %}
+        <h2>You have not Registered in any conference yet!!</h2>
+    {% endfor %}
+    <div class="mx-auto" style="width: 200px;height: 30px;">
+
+    </div>
+
+</body>
+
+</html>
+{% endblock content %}
