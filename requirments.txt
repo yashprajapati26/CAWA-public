@@ -6,6 +6,7 @@ mysqlclient
 django_mysql
 pycrptyodome
 pycrptyodomex
+django-admin-interface
 
 
 
